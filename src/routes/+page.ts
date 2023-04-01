@@ -1,3 +1,16 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import { error } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
+import { supabase } from '$lib/supabase/client';
+
+export const ssr = false;
+export const prerender = false;
+
+export const load: PageLoad = async () => {
+	const response = await supabase.from('words').select();
+
+	if (response.error) throw error(response.status, response.error.message);
+
+	return {
+		words: response.data
+	};
+};
