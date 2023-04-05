@@ -14,6 +14,7 @@
 		"supabase:generate-types": "bash ./scripts/generate-supabase-types.sh"
 	},
 	"dependencies": {
+		"@supabase/auth-helpers-sveltekit": "^0.9.0",
 		"@supabase/supabase-js": "^2.13.1"
 	},
 	"devDependencies": {
